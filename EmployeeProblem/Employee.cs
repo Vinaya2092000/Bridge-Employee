@@ -8,21 +8,34 @@ namespace EmployeeProblem
 {
     public class Employee
     {
-        public int EmpPresent = 1;
+        //Constants
+        int Part_Time = 1;
+        int Full_Time = 2;
+        int Emp_Rate_Per_Hr = 20;
         public void EmpWage()
         {
-            Random empCheck = new Random(); //Random=class random=obj
-            int value = empCheck.Next(0, 2); //next=method
+            //Variables
+            int empHrs = 0;
+            int empWage = 0;
+            Random random = new Random();
 
-            if (value == EmpPresent)
+            //Computation
+            int empCheck = random.Next(0, 3);
+            if (empCheck == Part_Time)
             {
-                Console.WriteLine("Employee Present");
+                empHrs = 4;
             }
-
+            else if (empCheck == Full_Time)
+            {
+                empHrs = 8;
+            }
             else
             {
-                Console.WriteLine("Employee is Absent");
+                empHrs = 0;
             }
+
+            empWage = empHrs * Emp_Rate_Per_Hr;
+            Console.WriteLine("Emp Wage: " + empWage);
         }
     }
 }
