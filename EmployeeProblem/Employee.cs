@@ -8,36 +8,37 @@ namespace EmployeeProblem
 {
     public class Employee
     {
-        public int EmpPresent = 1;
-        public int FullTime = 1;
-        public int Wage_Per_Hr = 20;
-        public int Full_Day_Hr = 8;
-        public int PartTime_Day_Hr = 4;
-        public int DailyWage = 0;
+        public const int IS_FULL_TIME = 1;
+        public const int IS_PART_TIME = 2;
+        public const int IS_ABSENT = 0;
+        public const int DailyWage = 0;
+        int empWage = 20;
+        public int IsEmployeePresent()
+        {
+            return new Random().Next(0, 3);
+        }
+
+        //Randon random= new Randon); 
+        //int value = ranoda.next(0,3)
         public void EmpWage()
         {
-            Random empCheck = new Random(); //Random=class random=obj
-            int value = empCheck.Next(0, 2); //next=method
-
-            if (value == EmpPresent)
+            // int DayNumber = 1;
+            int empWorkingHrs = 0;
+            //int TotalworkingHrs = 0;
+            switch (IsEmployeePresent())
             {
-                Random TimeCheck = new Random();
-                int WorkingHours = TimeCheck.Next(0, 2);
-                if (WorkingHours == FullTime)
-                {
-                    DailyWage = Wage_Per_Hr * Full_Day_Hr;
-                    Console.WriteLine("Employee Present" + DailyWage);
-                }
-                else
-                {
-                    DailyWage = Wage_Per_Hr * PartTime_Day_Hr;
-                    Console.WriteLine("Employee Present for PartTime" + DailyWage);
-                }
+                case IS_ABSENT:
+                    empWorkingHrs = 0;
+                    break;
+                case IS_PART_TIME:
+                    empWorkingHrs = 4;
+                    break;
+                case IS_FULL_TIME:
+                    empWorkingHrs = 8;
+                    break;
             }
-            else
-            {
-                Console.WriteLine("Employee is Absent");
-            }
-        }       // TotalWorkingHrs += EmpWorkingHrs;
+            int DailyWage = empWorkingHrs * empWage; //TotalMage + EmpDailywage;
+            Console.WriteLine("Daily Wage: " + DailyWage);
+        }
     }
 }
