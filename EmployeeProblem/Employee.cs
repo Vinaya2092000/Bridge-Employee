@@ -6,47 +6,47 @@ using System.Threading.Tasks;
 
 namespace EmployeeProblem
 {
-    internal class Employee
+    public class Employee
     {
-        public const int IS_FULL_TIME = 1;
-        public const int IS_PART_TIME = 2;
-        public const int IS_ABSENT = 0;
+        public const int IS_PART_TIME = 1;
+        public const int IS_FULL_TIME = 2;
+        public const int RATE_PER_HOUR = 29;
 
-        public const int DailyWage = 0;
-        //public float TotalMage = 0;
-        int Empwage = 20;
-        public int IsEmployeePresent()
-        {
-            return new Random().Next(0, 3);
-        }
+        public const int WORKING_DAYS = 20;
+        public const int MAX_HRS_IN_MONTH = 100;
 
-        //Randon random= new Randon); 
-        //int value = ranoda.next(0,3)
         public void EmpWage()
         {
 
-            // int DayNumber = 1;
-            int EmpworkingHrs = 0;
-            //int TotalworkingHrs = 0;
-
-            switch (IsEmployeePresent())
+            //Variables
+            int empHrs;
+            int totalEmpHrs = 0, totalWorkingDays = 0;
+            //Computation
+            while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < WORKING_DAYS)
             {
-                case IS_ABSENT:
-                    EmpworkingHrs = 0;
-                    break;
+                totalWorkingDays++;
+                Random random = new Random();
+                int empCheck = random.Next(0, 3);
+                switch (empCheck)
+                {
 
-                case IS_PART_TIME:
-                    EmpworkingHrs = 4;
-                    break;
+                    case IS_PART_TIME:
+                        empHrs = 4;
+                        break;
 
+                    case IS_FULL_TIME:
+                        empHrs = 8;
+                        break;
 
-                case IS_FULL_TIME:
-                    EmpworkingHrs = 8;
-                    break;
-
+                    default:
+                        empHrs = 6;
+                        break;
+                }
+                totalEmpHrs += empHrs;
+                Console.WriteLine("Day" + totalWorkingDays + "Emp Hrs " + empHrs);
             }
-            int DailyWage = EmpworkingHrs * Empwage; //TotalMage + EmpDailywage;
-            Console.WriteLine("Daily Wage: " + DailyWage);                                         // DayNumber++;                                                 // TotalWorkingHrs += EmpWorkingHrs;
-        }
+            int totalEmpWage = totalEmpHrs * RATE_PER_HOUR;
+            Console.WriteLine("Total Emp Wage: " + totalEmpWage);
+        }                                        // DayNumber++;                                                 // TotalWorkingHrs += EmpWorkingHrs;
     }
 }
